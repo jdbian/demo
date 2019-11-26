@@ -12,15 +12,22 @@ import java.util.stream.Stream;
 public class fileProcessor{
 
     private String uniqueKey;
+    private String tableId;
 
     public fileProcessor(){
 
     }
 
-    public fileProcessor(String uniqueKey){
+    public fileProcessor(String uniqueKey, String tableId){
         this.uniqueKey=uniqueKey;
+        this.tableId=tableId;
     }
 
+    /**
+     *
+     * @param cmdWithPath  this parameter has to be command/batch/exe file with absolute path, e.g. c:/Users/<username>/command.bat arg1 arg2 > result.txt
+     * @throws IOException Throws IOexception if can not find the executable file
+     */
     public void cmdRunner(String cmdWithPath) throws IOException {
         Runtime.getRuntime().exec(cmdWithPath);
     }
@@ -40,7 +47,7 @@ public class fileProcessor{
         if (replace.contains(key)){
             replace.set(replace.indexOf(key)+1, preStr + tableId);
         }else{
-            System.out.println("The file is not containing the required table id");
+            System.out.println("The file is not containing the required uniqueKey " + this.uniqueKey);
         }
         //System.out.println(replace);
         Files.write(filepath, replace);
@@ -50,6 +57,7 @@ public class fileProcessor{
     public void setUniqueKey(String uniqueKey){
         this.uniqueKey=uniqueKey;
     }
+
 
     public void replaceAllTableId(String dirpath, String tableId, @Nullable String waitTimeinSeconds) throws IOException {
         int wait;
@@ -72,6 +80,17 @@ public class fileProcessor{
         });
     }
 
+    public void setTableId(String tableId){
+        this.tableId=tableId;
+    }
 
+    public void replaceAllTableId(String dirpath, @Nullable String waitTimeinSeconds) throws Exception {
+        if (this.tableId!=null){
+            replaceAllTableId(dirpath,this.tableId,waitTimeinSeconds);
+        }else{
+            System.out.println("The table id is Null, there is no value can be replaced");
+            throw new Exception("The value of table id is null");
+        }
+    }
 
 }
