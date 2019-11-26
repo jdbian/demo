@@ -1,0 +1,9 @@
+Hello World!
+==================
+First Arg: test1
+==================
+Second arg: test2
+==================
+/Users/admin/workspace_java/demo
+==================
+Program End!

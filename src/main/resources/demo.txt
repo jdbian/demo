@@ -1,0 +1,12 @@
+# comment line 1
+# comment line 2
+# comment line 3
+# comment line 4
+message line 1
+message line 2
+message line 3
+message line 4
+# table id
+8=1234567
+message line 5
+message line 6
