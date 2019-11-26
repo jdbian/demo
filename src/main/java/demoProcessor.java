@@ -4,6 +4,8 @@ public class demoProcessor {
     public static void main(String[] args){
         fileProcessor fp = new fileProcessor();
         try{
+            //if running in Windows system plz try folowing as test
+            //fp.cmdRunner("./scripts/test.bat test1 test2 > ./scripts/result.txt");
             fp.cmdRunner("./scripts/test.sh test1 test2 > ./scripts/result.txt");
         }catch(Exception e){
             System.out.println(e.getMessage());
